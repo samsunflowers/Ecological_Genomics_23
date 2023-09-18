@@ -18,7 +18,8 @@
 -   [Entry 2: 2023-09-13](#id-section2)
 -   [Entry 3: 2023-09-18](#id-section3)
 
-<div id='id-section1'/>                                                                                                                 
+<div id='id-section1'/>
+
 - We obtained background on the Red spruce study system and the experimental design of the exome capture data. 
 - Visualized and interpreted Illumina data quality: what is a FastQ file? 
 - Trimmed the reads based on base quality scores in preparation for mapping to the reference genome. 

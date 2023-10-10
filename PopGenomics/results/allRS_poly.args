@@ -1,0 +1,9 @@
+PCAngsd v1.11
+Time: 27/09/2023 11:23:23
+Directory: /data/users/s/b/sbjorklu/myscripts
+Options:
+	-beagle /netfiles/ecogen/PopulationGenomics/ANGSD/allRS_poly.beagle.gz
+	-n_eig 1
+	-out /users/s/b/sbjorklu/myresults/ANGSD/allRS_poly
+	-admix
+	-admix_alpha 50.0

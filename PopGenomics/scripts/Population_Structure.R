@@ -59,8 +59,6 @@ ggscatter(data, x = "V1", y = "V2",
 # Order according to population code
 ord<-order(pops[,2])
 
-
-
 # Seeing K=2
 
 q2 <- read.table("allRS_poly.admix.2.Q", sep=" ", header=F)

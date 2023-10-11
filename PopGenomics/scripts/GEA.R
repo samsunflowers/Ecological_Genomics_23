@@ -48,13 +48,12 @@ fviz_pca_biplot(clim_PCA,
                 geom.ind="point",
                 col.ind = angsd_coords_clim$Latitude, 
                 gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-                title="Climate PCA",
+                title=("Climate PCA"),
                 legend.title="Latitude")
 
 # Which variables show the strongest correlation on the first 2 climate PC axes?
 
 dimdesc(clim_PCA)[1:3]
-
 
 #### Bioclim variable most important for each of these axes
 

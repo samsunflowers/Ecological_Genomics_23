@@ -97,3 +97,4 @@
 -   Used plantgenie.org to determine the functions of the outlier loci.
 
 ## [Entry 9](#id-section9)
+-   Did the homework assignment in "Homework1" folder and changed the eigenvalues and reran code from Entry 6 and above.

@@ -3,7 +3,7 @@ library(ggpubr) # plotting
 
 setwd("C:/Users/bjork/Documents/GitHub/Ecological_Genomics_23/PopGenomics/results/Homework1") # set the path to where you saved the pcANGSD results on your laptop
 
-## First, let's work on the genetic PCA:
+## Genetic PCA:
 
 COV <- as.matrix(read.table("allRS_poly.cov")) # read in the genetic covariance matrix
 PCA <- eigen(COV) # extract the principal components from the COV matrix
@@ -27,15 +27,15 @@ names(pops) = c("Ind", "Pop", "Row", "Col")
 
 ## A quick and humble PCA plot:
 
-plot(PCA$vectors[,1:2],
-     col=as.factor(pops[,2]),
+plot(PCA$vectors[,1:3],
+     col=as.factor(pops[,3]),
      xlab="PC1",ylab="PC2", 
      main="Genetic PCA")
 
 ## A more beautiful PCA plot using ggplot :)
 
 data=as.data.frame(PCA$vectors)
-data=data[,c(1:3)]
+data=data[,c(1:2)]
 data= cbind(data, pops)
 
 cols=c("#377eB8","#EE9B00","#0A9396","#94D2BD","#FFCB69","#005f73","#E26D5C","#AE2012", "#6d597a", "#7EA16B","#d4e09b", "gray70")
@@ -52,12 +52,14 @@ ggscatter(data, x = "V1", y = "V2",
         legend.text=element_text(size=rel(.7)), 
         axis.text = element_text(size=13), 
         legend.position = "bottom") +
-  labs(x = paste0("PC1: (",var[1]*100,"%)"), y = paste0("PC2: (",var[3]*100,"%)")) +
+  labs(x = paste0("PC1: (",var[1]*100,"%)"), y = paste0("PC2: (",var[2]*100,"%)")) +
   scale_color_manual(values=c(cols), name="Source population") +
   guides(colour = guide_legend(nrow = 2))
 
 # Order according to population code
 ord<-order(pops[,2])
+
+
 
 # Seeing K=2
 

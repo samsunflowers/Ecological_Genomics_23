@@ -5,7 +5,7 @@
 
 library(RcppCNPy) # for reading python numpy (.npy) files
 
-setwd("C:/Users/bjork/Documents/GitHub/Ecological_Genomics_23/PopGenomics/results/Homework1.2")
+setwd("C:/Users/bjork/Documents/GitHub/Ecological_Genomics_23/PopGenomics/results/Homework1")
 
 list.files()
 

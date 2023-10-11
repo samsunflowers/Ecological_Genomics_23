@@ -7,10 +7,10 @@ library(factoextra)
 library(corrplot)
 
 # Setting working directory
-setwd("C:/Users/bjork/Documents/GitHub/Ecological_Genomics_23/PopGenomics/results/Homework1.2")
+setwd("C:/Users/bjork/Documents/GitHub/Ecological_Genomics_23/PopGenomics/results/Homework1")
 
 # Getting bioclimatic variables
-bioclim_list <- list.files("C:/Users/bjork/Documents/GitHub/Ecological_Genomics_23/PopGenomics/results/Homework1.2/wc10", pattern=".bil",full.names=T)
+bioclim_list <- list.files("C:/Users/bjork/Documents/GitHub/Ecological_Genomics_23/PopGenomics/results/Homework1/wc10", pattern=".bil",full.names=T)
 
 bio <- raster::stack(bioclim_list)
 
@@ -48,7 +48,7 @@ fviz_pca_biplot(clim_PCA,
                 geom.ind="point",
                 col.ind = angsd_coords_clim$Latitude, 
                 gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-                title="Climate PCA (Bioclim)",
+                title="Climate PCA",
                 legend.title="Latitude")
 
 # Which variables show the strongest correlation on the first 2 climate PC axes?

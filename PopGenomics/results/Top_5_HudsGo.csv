@@ -1,0 +1,11 @@
+,species,generation,pval,gene ratio,gene number,gene total,p.adj,ratio diff
+regulation of membrane potential,hudsonica,F0,9.37E-11,0.2181818182,48,220,10.02826041,0.1954545455
+regulation of membrane potential,hudsonica,F4,4.16E-05,0.02272727273,5,220,4.380906669,
+regulation of blood circulation,hudsonica,F0,3.70E-05,0.1894736842,18,95,4.431798276,0.1473684211
+regulation of blood circulation,hudsonica,F4,5.43E-06,0.04210526316,4,95,5.26520017,
+homophilic cell adhesion via plasma membrane adhesion molecules,hudsonica,F0,2.10E-06,0.1904761905,12,63,5.677780705,0.1428571429
+homophilic cell adhesion via plasma membrane adhesion molecules,hudsonica,F4,3.67E-05,0.04761904762,3,63,4.435333936,
+detection of stimulus involved in sensory perception,hudsonica,F0,1.69E-05,0.1698113208,9,53,4.772113295,0.1320754717
+detection of stimulus involved in sensory perception,hudsonica,F4,8.74E-06,0.03773584906,2,53,5.058488567,
+action potential,hudsonica,F4,2.07E-04,0,0,45,3.684029655,0.3111111111
+action potential,hudsonica,F0,8.04E-06,0.3111111111,14,45,5.094743951,

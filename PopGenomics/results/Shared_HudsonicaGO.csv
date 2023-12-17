@@ -1,0 +1,65 @@
+,species,generation,pval,gene ratio,gene number,gene total,p.adj
+transmembrane transport,hudsonica,F0,1.13E-12,0.0951417004,47,494,11.94692156
+transmembrane transport,hudsonica,F4,2.99E-15,0.03643724696,18,494,14.52432881
+sodium ion transport,hudsonica,F0,3.93E-06,0.09677419355,6,62,5.40560745
+sodium ion transport,hudsonica,F4,6.12E-05,0.06451612903,4,62,4.213248578
+signaling,hudsonica,F0,1.56E-15,0.1725490196,44,255,14.8068754
+signaling,hudsonica,F4,1.90E-04,0.03529411765,9,255,3.721246399
+regulation of transporter activity,hudsonica,F0,8.60E-04,0.176,22,125,3.065501549
+regulation of transporter activity,hudsonica,F4,5.77E-04,0.072,9,125,3.238824187
+regulation of transmembrane transport,hudsonica,F0,5.34E-09,0.1604477612,43,268,8.272458743
+regulation of transmembrane transport,hudsonica,F4,1.68E-09,0.04104477612,11,268,8.774690718
+regulation of mitotic cell cycle,hudsonica,F0,6.72E-08,0.02413793103,7,290,7.172630727
+regulation of mitotic cell cycle,hudsonica,F4,4.77E-07,0.01724137931,5,290,6.321481621
+regulation of metal ion transport,hudsonica,F0,8.54E-05,0.1476510067,22,149,4.068542129
+regulation of metal ion transport,hudsonica,F4,3.27E-05,0.06040268456,9,149,4.485452247
+regulation of membrane potential,hudsonica,F0,9.37E-11,0.2181818182,48,220,10.02826041
+regulation of membrane potential,hudsonica,F4,4.16E-05,0.02272727273,5,220,4.380906669
+regulation of cell cycle process,hudsonica,F0,5.19E-09,0.04239401496,17,401,8.284832642
+regulation of cell cycle process,hudsonica,F4,1.14E-10,0.03241895262,13,401,9.943095149
+regulation of cell cycle phase transition,hudsonica,F0,2.91E-06,0.03501945525,9,257,5.536107011
+regulation of cell cycle phase transition,hudsonica,F4,3.94E-07,0.0233463035,6,257,6.404503778
+regulation of blood circulation,hudsonica,F0,3.70E-05,0.1894736842,18,95,4.431798276
+regulation of blood circulation,hudsonica,F4,5.43E-06,0.04210526316,4,95,5.26520017
+protein-DNA complex organization,hudsonica,F4,1.87E-10,0.04838709677,18,372,9.728158393
+protein-DNA complex organization,hudsonica,F0,1.06E-05,0.04301075269,16,372,4.974694135
+protein acylation,hudsonica,F4,1.22E-04,0.02617801047,5,191,3.913640169
+protein acylation,hudsonica,F0,1.10E-04,0.02094240838,4,191,3.958607315
+potassium ion transport,hudsonica,F0,8.72E-13,0.1777777778,16,90,12.05948352
+potassium ion transport,hudsonica,F4,1.68E-09,0.05555555556,5,90,8.774690718
+negative regulation of cell cycle,hudsonica,F0,1.57E-06,0.04545454545,10,220,5.804100348
+negative regulation of cell cycle,hudsonica,F4,6.19E-05,0.02272727273,5,220,4.208309351
+monoatomic ion transport,hudsonica,F0,1.00E-15,0.147505423,68,461,15
+monoatomic ion transport,hudsonica,F4,1.00E-15,0.03253796095,15,461,15
+monoatomic cation transport,hudsonica,F0,1.00E-15,0.1231527094,50,406,15
+monoatomic cation transport,hudsonica,F4,1.00E-15,0.02955665025,12.00,406,15
+import across plasma membrane,hudsonica,F0,1.33E-05,0.08139534884,7,86,4.876148359
+import across plasma membrane,hudsonica,F4,3.19E-07,0.08139534884,7,86,6.496209317
+homophilic cell adhesion via plasma membrane adhesion molecules,hudsonica,F0,2.10E-06,0.1904761905,12,63,5.677780705
+homophilic cell adhesion via plasma membrane adhesion molecules,hudsonica,F4,3.67E-05,0.04761904762,3,63,4.435333936
+histone modification,hudsonica,F0,2.87E-04,0.06516290727,26,399,3.542118103
+histone modification,hudsonica,F4,5.09E-08,0.04260651629,17,399,7.293282218
+DNA repair,hudsonica,F4,2.17E-13,0.02488687783,11,442,12.66354027
+DNA repair,hudsonica,F0,8.72E-13,0.02036199095,9,442,12.05948352
+detection of stimulus involved in sensory perception,hudsonica,F0,1.69E-05,0.1698113208,9,53,4.772113295
+detection of stimulus involved in sensory perception,hudsonica,F4,8.74E-06,0.03773584906,2,53,5.058488567
+detection of stimulus,hudsonica,F0,6.59E-09,0.1395348837,18,129,8.181114585
+detection of stimulus,hudsonica,F4,2.49E-08,0.03100775194,4,129,7.603800653
+detection of mechanical stimulus,hudsonica,F0,1.07E-06,0.2424242424,8,33,5.970616222
+detection of mechanical stimulus,hudsonica,F4,2.27E-04,0.06060606061,2,33,3.643974143
+chromosome organization,hudsonica,F0,4.41E-04,0.05785123967,14,242,3.355561411
+chromosome organization,hudsonica,F4,5.58E-06,0.04545454545,11,242,5.253365801
+cell-cell adhesion via plasma-membrane adhesion molecules,hudsonica,F0,9.41E-09,0.1546391753,15,97,8.026410377
+cell-cell adhesion via plasma-membrane adhesion molecules,hudsonica,F4,1.21E-04,0.07216494845,7,97,3.91721463
+cell-cell adhesion,hudsonica,F0,2.49E-08,0.09844559585,19,193,7.603800653
+cell-cell adhesion,hudsonica,F4,8.42E-04,0.05699481865,11,193,3.074687909
+cell division,hudsonica,F0,1.13E-10,0.0502283105,22,438,9.946921557
+cell division,hudsonica,F4,1.97E-05,0.01369863014,6,438,4.705533774
+cell cycle,hudsonica,F0,3.81E-09,0.04595185996,21,457,8.419075024
+cell cycle,hudsonica,F4,1.19E-04,0.02625820569,12,457,3.924453039
+cell adhesion,hudsonica,F0,8.11E-10,0.1279373368,49,383,9.090979146
+cell adhesion,hudsonica,F4,4.76E-06,0.04438642298,17,383,5.322393047
+calcium ion transport,hudsonica,F0,2.48E-04,0.1338582677,17,127,3.605548319
+calcium ion transport,hudsonica,F4,1.81E-04,0.02362204724,3,127,3.742321425
+action potential,hudsonica,F4,2.07E-04,0,0,45,3.684029655
+action potential,hudsonica,F0,8.04E-06,0.3111111111,14,45,5.094743951

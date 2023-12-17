@@ -1,0 +1,5 @@
+,species,generation,pval,gene ratio,gene number,out of,p.adj
+organic acid metabolic process,tonsa,F3,1.55E-04,0.040816326,1.20E+01,2.94E+02,3.81E+00
+organic acid metabolic process,tonsa,F1,5.01E-04,0.037542662,11,293,3.30E+00
+small molecule metabolic process,tonsa,F3,1.62E-05,0.046762589,2.60E+01,5.56E+02,4.79E+00
+small molecule metabolic process,tonsa,F1,5.01E-04,0.041516245,23,554,3.30E+00

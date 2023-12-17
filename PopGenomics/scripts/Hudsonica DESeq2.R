@@ -1,4 +1,4 @@
-## Set your working directory
+## Set your working directory; change to your working directory!
 setwd("C:/Users/bjork/Documents/GitHub/Ecological_Genomics_23/PopGenomics/results/")
 
 library(DESeq2)
@@ -13,87 +13,167 @@ library(pheatmap)
 library(RColorBrewer)
 library(eulerr)
 
-# Import the counts matrix
-countsTable <- read.table("salmon.isoform.counts.matrix.filteredAssembly", header=TRUE, row.names=1)
-head(countsTable)
-dim(countsTable)
-countsTableRound <- round(countsTable) # bc DESeq2 doesn't like decimals (and Salmon outputs data with decimals)
-head(countsTableRound)
+# Import the counts matrix for Hudsonica
+countsTableHudsonica <- read.table("salmon.isoform.counts.matrix.filteredAssembly", header=TRUE, row.names=1)
+head(countsTableHudsonica)
 
-#import the sample discription table
-conds <- read.delim("ahud_samples_R.txt", header=TRUE, stringsAsFactors = TRUE, row.names=1)
-head(conds)
+# Import the counts matrix for Tonsa
+countsTableTonsaF1 <- read.table("DE_counts_F1.txt", header=TRUE, row.names=1)
+head(countsTableTonsaF1)
+countsTableTonsaF3 <- read.table("DE_counts_F3.txt", header=TRUE, row.names=1)
+head(countsTableTonsaF3)
 
-# Let's see how many reads we have from each sample
-colSums(countsTableRound)
-mean(colSums(countsTableRound))
-barplot(colSums(countsTableRound), names.arg=colnames(countsTableRound),cex.names=0.5, las=3,ylim=c(0,20000000))
-abline(h=mean(colSums(countsTableRound)), col="blue", lwd=2)
+# Round the counts matrix for Hudsonica because DESeq2 does not like decimals
+countsTableRoundHudsonica <- round(countsTableHudsonica)
+head(countsTableRoundHudsonica)
 
-# the average number of counts per gene
-rowSums(countsTableRound)
-mean(rowSums(countsTableRound)) # [1] 8217.81
-median(rowSums(countsTableRound)) # [1] 377
-apply(countsTableRound,2,mean) # 2 in the apply function does the action across columns
-apply(countsTableRound,1,mean) # 1 in the apply function does the action across rows
-hist(apply(countsTableRound,1,mean),xlim=c(0,10000), ylim=c(0,60000),breaks=1000)
+# Round the counts matrix for Tonsa because DESeq2 does not like decimals
+countsTableRoundTonsaF1 <- round(countsTableTonsaF1)
+head(countsTableRoundTonsaF1)
+countsTableRoundTonsaF3 <- round(countsTableTonsaF3)
+head(countsTableRoundTonsaF3)
 
-## Create a DESeq object and define the experimental design here with the tilda
-dds <- DESeqDataSetFromMatrix(countData = countsTableRound, colData=conds, 
+# Combining Tonsa F1 and F3 rounded counts data
+common_row_names <- intersect(row.names(countsTableRoundTonsaF1), row.names(countsTableRoundTonsaF3))
+countsTableRoundTonsaF1_common <- countsTableRoundTonsaF1[common_row_names, ]
+countsTableRoundTonsaF3_common <- countsTableRoundTonsaF3[common_row_names, ]
+countsTableRoundTonsa <- cbind(countsTableRoundTonsaF1_common, countsTableRoundTonsaF3_common)
+head(countsTableRoundTonsa)
+
+# Import the sample description table for Hudsonica and Tonsa
+condsHudsonica <- read.delim("ahud_samples_R.txt", header=TRUE, stringsAsFactors = TRUE, row.names=1)
+head(condsHudsonica)
+condsTonsaF1 <- read.delim("RT_tonsa_F1_samples.txt", header=TRUE, stringsAsFactors = TRUE, row.names=1)
+condsTonsaF3 <- read.delim("RT_tonsa_F3_samples.txt", header=TRUE, stringsAsFactors = TRUE, row.names=1)
+
+# Add a column that states the generation for each Tonsa dataset to make it easier to subset later
+condsTonsaF1$generation <- c("F1")
+condsTonsaF3$generation <- c("F3")
+
+# Combine the condition data for F1 and F3 Tonsa data
+condsTonsa <- rbind(condsTonsaF1, condsTonsaF3)
+colnames(condsTonsa) <- c("treatment", "line", "environment", "generation")
+head(condsTonsa)
+
+# How many reads do we have in Hudsonica?
+colSums(countsTableRoundHudsonica)
+mean(colSums(countsTableRoundHudsonica))
+barplot(colSums(countsTableRoundHudsonica), names.arg=colnames(countsTableRoundHudsonica),cex.names=0.5, las=3,ylim=c(0,20000000))
+abline(h=mean(colSums(countsTableRoundHudsonica)), col="blue", lwd=2)
+
+# How many reads do we have in Tonsa?
+colSums(countsTableRoundTonsa)
+mean(colSums(countsTableRoundTonsa))
+barplot(colSums(countsTableRoundTonsa), names.arg=colnames(countsTableRoundTonsa),cex.names=0.5, las=3,ylim=c(0,20000000))
+abline(h=mean(colSums(countsTableRoundTonsa)), col="blue", lwd=2)
+
+# What is the average number of counts per gene in Hudsonica?
+rowSums(countsTableRoundHudsonica)
+mean(rowSums(countsTableRoundHudsonica)) # 8217.81
+median(rowSums(countsTableRoundHudsonica)) # 377
+apply(countsTableRoundHudsonica,2,mean) # 2 in the apply function does the action across columns
+apply(countsTableRoundHudsonica,1,mean) # 1 in the apply function does the action across rows
+hist(apply(countsTableRoundHudsonica,1,mean),xlim=c(0,10000), ylim=c(0,60000),breaks=1000)
+
+# What is the average number of counts per gene in Tonsa?
+rowSums(countsTableRoundTonsa)
+mean(rowSums(countsTableRoundTonsa)) # 24131.74
+median(rowSums(countsTableRoundTonsa)) # 4776
+apply(countsTableRoundTonsa,2,mean) # 2 in the apply function does the action across columns
+apply(countsTableRoundTonsa,1,mean) # 1 in the apply function does the action across rows
+hist(apply(countsTableRoundTonsa,1,mean),xlim=c(0,10000), ylim=c(0,60000),breaks=1000)
+
+# Create a DESeq object and define the experimental design here with the tilda
+# HUDSONICA
+ddsHudsonica <- DESeqDataSetFromMatrix(countData = countsTableRoundHudsonica, colData=condsHudsonica, 
+                                       design= ~ treatment + generation)
+dim(ddsHudsonica)
+
+# TONSA
+ddsTonsa <- DESeqDataSetFromMatrix(countData = countsTableRoundTonsa, colData=condsTonsa, 
                               design= ~ treatment + generation)
-dim(dds)
+dim(ddsTonsa)
 
 # Filter out genes with too few reads - remove all genes with counts < 15 in more than 75% of samples, so ~28) suggested by WGCNA on RNAseq FAQ
-dds <- dds[rowSums(counts(dds) >= 15) >= 28,]
-nrow(dds) # 25260, that have at least 15 reads (aka counts) in 75% of the samples
+# HUDSONICA
+ddsHudsonica <- ddsHudsonica[rowSums(counts(ddsHudsonica) >= 15) >= 28,]
+nrow(ddsHudsonica) # 25260, that have at least 15 reads (aka counts) in 75% of the samples
+
+# TONSA
+ddsTonsa <- ddsTonsa[rowSums(counts(ddsTonsa) >= 15) >= 28,]
+nrow(ddsTonsa) # 21353, that have at least 15 reads (aka counts) in 75% of the samples
 
 # Run the DESeq model to test for differential gene expression
-dds <- DESeq(dds)
+ddsHudsonica <- DESeq(ddsHudsonica)
+ddsTonsa <- DESeq(ddsTonsa)
 
 # List the results you've generated
-resultsNames(dds)
-# [1] "Intercept"            "treatment_OA_vs_AM"   "treatment_OW_vs_AM"  
-# [4] "treatment_OWA_vs_AM"  "generation_F11_vs_F0" "generation_F2_vs_F0" 
-# [7] "generation_F4_vs_F0"
+# HUDSONICA
+resultsNames(ddsHudsonica)
+# [1] "Intercept"            "treatment_OA_vs_AM"   "treatment_OW_vs_AM"   "treatment_OWA_vs_AM"  "generation_F11_vs_F0"
+# [6] "generation_F2_vs_F0"  "generation_F4_vs_F0"
 
-###############################################################
+# TONSA
+resultsNames(ddsTonsa)
+# [1] "Intercept"            "treatment_AAtoHH_vs_AAtoAA" "treatment_HHtoAA_vs_AAtoAA" "treatment_HHtoHH_vs_AAtoAA"
+# [5] "generation_F3_vs_F1"  
 
 # Check the quality of the data by sample clustering and visualization
 # The goal of transformation "is to remove the dependence of the variance on the mean, particularly the high variance of the logarithm of count data when the mean is low."
-# This gives log2(n + 1)
-ntd <- normTransform(dds)
-meanSdPlot(assay(ntd))
+ntdHudsonica <- normTransform(ddsHudsonica)
+meanSdPlot(assay(ntdHudsonica))
+
+ntdTonsa <- normTransform(ddsTonsa)
+meanSdPlot(assay(ntdTonsa))
 
 # Variance stabilizing transformation
-vsd <- vst(dds, blind=FALSE)
-meanSdPlot(assay(vsd))
-sampleDists <- dist(t(assay(vsd)))
-sampleDistMatrix <- as.matrix(sampleDists)
-rownames(sampleDistMatrix) <- paste(vsd$treatment, vsd$generation, sep="-")
-colnames(sampleDistMatrix) <- NULL
+vsdHudsonica <- vst(ddsHudsonica, blind=FALSE)
+meanSdPlot(assay(vsdHudsonica))
+sampleDistsHudsonica <- dist(t(assay(vsdHudsonica)))
+sampleDistMatrixHudsonica <- as.matrix(sampleDistsHudsonica)
+rownames(sampleDistMatrixHudsonica) <- paste(vsdHudsonica$treatment, vsdHudsonica$generation, sep="-")
+colnames(sampleDistMatrixHudsonica) <- NULL
 colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
-pheatmap(sampleDistMatrix,
-         clustering_distance_rows=sampleDists,
-         clustering_distance_cols=sampleDists,
+pheatmap(sampleDistMatrixHudsonica,
+         clustering_distance_rows=sampleDistsHudsonica,
+         clustering_distance_cols=sampleDistsHudsonica,
          col=colors)
-# AM_F11_Rep3 and OA_F2_Rep2 could be outliers
 
-###############################################################
+vsdTonsa <- vst(ddsTonsa, blind=FALSE)
+meanSdPlot(assay(vsdTonsa))
+sampleDistsTonsa <- dist(t(assay(vsdTonsa)))
+sampleDistMatrixTonsa <- as.matrix(sampleDistsTonsa)
+rownames(sampleDistMatrixTonsa) <- paste(vsdTonsa$treatment, vsdTonsa$generation, sep="-")
+colnames(sampleDistMatrixTonsa) <- NULL
+colors <- colorRampPalette( rev(brewer.pal(9, "Blues")) )(255)
+pheatmap(sampleDistMatrixTonsa,
+         clustering_distance_rows=sampleDistsTonsa,
+         clustering_distance_cols=sampleDistsTonsa,
+         col=colors)
+
 # PCA to visualize global gene expression patterns
 # First transform the data for plotting using variance stabilization
-vsd <- vst(dds, blind=FALSE)
-pcaData <- plotPCA(vsd, intgroup=c("treatment","generation"), returnData=TRUE)
-percentVar <- round(100 * attr(pcaData,"percentVar"))
-ggplot(pcaData, aes(PC1, PC2, color=treatment, shape=generation)) +
+vsdHudsonica <- vst(ddsHudsonica, blind=FALSE)
+pcaDataHudsonica <- plotPCA(vsdHudsonica, intgroup=c("treatment","generation"), returnData=TRUE)
+percentVarHudsonica <- round(100 * attr(pcaDataHudsonica,"percentVar"))
+ggplot(pcaDataHudsonica, aes(PC1, PC2, color=treatment, shape=generation)) +
   geom_point(size=3) +
-  xlab(paste0("PC1: ",percentVar[1],"% variance")) +
-  ylab(paste0("PC2: ",percentVar[2],"% variance")) + 
+  xlab(paste0("PC1: ",percentVarHudsonica[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVarHudsonica[2],"% variance")) + 
   coord_fixed()
 
-# Strong gene response in the first generation and changed responses by the fourth through eleventh generation.
+vsdTonsa <- vst(ddsTonsa, blind=FALSE)
+pcaDataTonsa <- plotPCA(vsdTonsa, intgroup=c("treatment","generation"), returnData=TRUE)
+percentVarTonsa <- round(100 * attr(pcaDataTonsa,"percentVar"))
+ggplot(pcaDataTonsa, aes(PC1, PC2, color=treatment, shape=generation)) +
+  geom_point(size=3) +
+  xlab(paste0("PC1: ",percentVarTonsa[1],"% variance")) +
+  ylab(paste0("PC2: ",percentVarTonsa[2],"% variance")) + 
+  coord_fixed()
+
 # Let's plot the PCA by generation in four panels
-data <- plotPCA(vsd, intgroup=c("treatment","generation"), returnData=TRUE)
-percentVar <- round(100 * attr(data,"percentVar"))
+dataHudsonica <- plotPCA(vsdHudsonica, intgroup=c("treatment","generation"), returnData=TRUE)
+percentVar <- round(100 * attr(dataHudsonica,"percentVar"))
 
 ###############################################################
 dataF0 <- subset(data, generation == 'F0')
@@ -337,13 +417,13 @@ length(intersect(degs_F11_OWAvAM,intWA)) # 2
 15-2 #13 F11 and F4
 
 # Note that the names are important and have to be specific to line up the diagram
-fit1 <- euler(c("F0" = 3637, "F4" = 171, "F11" = 1164, "F0&F4" = 55, "F0&F11" = 224, "F11&F4" = 13, "F0&F4&F11" = 2))
+fit1 <- euler(c("F0" = 3637, "F4" = 171, "F0&F4" = 55))
 plot(fit1,  lty = 1:3, quantities = TRUE)
 plot2 <- plot(fit1, quantities = TRUE, fill = wes_palette("GrandBudapest1"),
      lty = 1:3,
      labels = list(font = 4))
 
-annotate_figure(plot2, top = text_grob("Shared Genes per Generation in OWA vs AM",
+annotate_figure(plot2, top = text_grob("Shared Genes per Generation in OWA vs AM in Hudsonica",
                                       color = "black", face = "bold", size = 15))
 
 #cross check
